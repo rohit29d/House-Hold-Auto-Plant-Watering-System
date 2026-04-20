@@ -11,20 +11,20 @@ void setup() {
 
 void loop() {
 
-  // 🔴 Override (always priority)
+  //override waterring
   if (digitalRead(overide_water) == LOW) {
     digitalWrite(valvecontrol, HIGH);
     return;
   }
 
-  // 🟢 OFF phase (non-blocking style)
+  //off phase
   digitalWrite(valvecontrol, LOW);
   for (int i = 0; i < toff / 100; i++) {
     if (digitalRead(overide_water) == LOW) return;
     delay(100);
   }
 
-  // 🟢 ON phase
+  //on phase
   digitalWrite(valvecontrol, HIGH);
   for (int i = 0; i < ton / 100; i++) {
     if (digitalRead(overide_water) == LOW) return;
