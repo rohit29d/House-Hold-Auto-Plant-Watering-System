@@ -1,9 +1,10 @@
 #define valvecontrol   2
 #define overide_water  5
-#define solar          A0   // NOTE: use A0–A5 for analog reads
+#define solar          A0   // NOTE: use A0–A5 for analog reads for arduino
 
-const unsigned long ton  = 10000;   // 20 min ON
-const unsigned long toff = 300000;   // 1 hr gap between sessions (adjust as needed)
+const unsigned long ton  = 10000;   //valve on time
+const unsigned long toff = 300000;   //valve off time
+
 
 bool daystate        = false;
 unsigned long lastdaystart = 0;
@@ -13,7 +14,6 @@ const unsigned int sunthresh = 600;
 void setup() {
   pinMode(valvecontrol,  OUTPUT);
   pinMode(overide_water, INPUT_PULLUP);
-  // A0 is INPUT by default, no pinMode needed
   digitalWrite(valvecontrol, LOW); // ensure valve starts closed
   Serial.begin(9600);              // optional, helpful for debugging
 }
@@ -28,7 +28,7 @@ void loop()
   if (!daystate && solarvalue > sunthresh) {
     daystate     = true;
     lastdaystart = now;
-    Serial.println("Sunrise detected – day started");
+    Serial.println("Sunrise detected - day started");
   }
 
   // ── Sunset detection ────────────────────────────────────────────────
