@@ -109,7 +109,8 @@ This avoids needing an RTC module while still being reliable.
 Current configuration:
 
 * 2 watering sessions per day
-* ~5 minutes per session (tuned to avoid overflow)
+* 2.5 minutes per session
+* 5 minutes total watering per day
 * Drip-based distribution
 
 This setup:
